@@ -57,3 +57,75 @@ El archivo queda así:
   }
 }
 ```
+
+## Creamos el primer bundle webpack.config.js
+
+### Creamos un index.html
+
+El index html para la prueba debe tener el siguiente contenido:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="dist/bundle.js"></script>
+</body>
+</html>
+```
+
+### Creamos un index.js
+
+En raiz del proyecto creamos un archivo llamado **src** y dentro de el creamos un **index.js** con el siguiente contenido:
+
+```js
+const carrito = ['producto', 'producto 2', 'produco 3'];
+console.log('carrito');
+```
+
+### Creamos el webpack.config.js
+
+```js
+//importamos path de node
+const path = require('path'); 
+module.exports = {
+    // especificamos la entrada tambien se puede usar:
+    // ['./src/index.js', './src/index2.js']
+    entry: './src/index.js',
+    output: {
+        filename: 'bundle.js',
+        path:path.join(__dirname, '/dist')
+    }
+}
+```
+### Creamos el script para ejecutar webpack
+
+En el archivo **package.json** agregamos un script:
+
+```json
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Aprendiendo webpack",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode development"
+  },
+  "author": "Luis Eduardo Alcantara Olvera",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
+```
+
+Ahora solo tenemos que ejecutar en terminal:
+
+`npm run build`
+
+Esto nos genera un archivo dist/bundle.js
