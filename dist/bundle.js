@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const carrito = ['producto', 'producto 2', 'produco 3'];\nconsole.log('carrito');\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Cliente = function Cliente(nombre) {\n  _classCallCheck(this, Cliente);\n\n  this.nombre = nombre;\n};\n\nvar cliente = new Cliente('Luis');\nconsole.log(cliente);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

@@ -1,2 +1,7 @@
-const carrito = ['producto', 'producto 2', 'produco 3'];
-console.log('carrito');
+class Cliente {
+    constructor(nombre){
+        this.nombre = nombre;
+    }
+}
+const cliente = new Cliente('Luis');
+console.log(cliente);
