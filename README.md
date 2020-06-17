@@ -208,3 +208,63 @@ module.exports = {
 ```
 
 Ahora al ejecutar `npm run watch` se puede ver el cambio en css
+
+## Soporte a SASS
+
+Instlamos la dependencia requerida:
+
+`sudo npm install --save-dev  style-loader css-loader sass-loader sass`
+
+Las carpetas quedan así:
+
+<p align="center"><img src="./readme/scss.png" width="250"></p>
+
+Editamos el archivo **webpack.config.js**
+```js
+const path = require('path'); //importamos path de node
+
+module.exports = {
+    // especificamos la entrada tambien se puede usar:
+    // ['./src/index.js', './src/index2.js']
+    entry: './src/js/index.js',
+    output: {
+        filename: 'bundle.js',
+        path:path.join(__dirname, '/dist')
+    },
+    module: {
+        rules: [
+            {
+                // Agregamos soporte a JS
+                test: /\.js$/, 
+                exclude: /node_modules/,
+                use:{ loader: 'babel-loader' }
+            },
+            {
+                // Agregamos soporte a CSS
+                test: /\.css$/,
+                use:[
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' }
+                ]
+            },
+            {
+                // Agregamos soporte a SASS
+                test: /\.scss$/,
+                use:[
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'sass-loader' }
+                ]
+            }
+        ]
+    }
+}
+```
+Agregamos y editamos **style.scss**
+
+```scss
+$color: #000;
+body{
+    background: $color;
+}
+```
