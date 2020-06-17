@@ -136,3 +136,135 @@ Esto nos genera un archivo dist/bundle.js
 Instalamos lo requerido para trabajar con babel
 
 `npm install --save-dev @babel/cli @babel/core @babel/preset-env @babel/register babel-loader`
+
+
+## Importar CSS
+
+Instalamos las  siguientes dependencias:
+
+`sudo npm install --save-dev style-loader css-loader`
+
+Las carpetas deben quedar de la siguiente forma: 
+
+<p align="center"><img src="./readme/css.png" width="250"></p>
+
+Editamos el archivo **index.js**:
+
+```js
+// Importamos css
+import '../css/style.css';
+
+class Cliente {
+    constructor(nombre){
+        this.nombre = nombre;
+    }
+}
+const cliente = new Cliente('Luis');
+console.log(cliente);
+```
+
+Editamos el archivo **style.css**:
+
+```css
+body{
+    background: red;
+}
+```
+
+Editamos el webpack.config.js agregando soporte a css:
+
+```js
+const path = require('path'); //importamos path de node
+
+module.exports = {
+    // especificamos la entrada tambien se puede usar:
+    // ['./src/index.js', './src/index2.js']
+    entry: './src/js/index.js',
+    output: {
+        filename: 'bundle.js',
+        path:path.join(__dirname, '/dist')
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/, 
+                exclude: /node_modules/,
+                use:{
+                    loader: 'babel-loader'
+                }
+
+            },
+            { 
+                // agregamos soporte a css
+                test: /\.css$/,
+                use:[
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' }
+                ]
+            }
+        ]
+    }
+}
+```
+
+Ahora al ejecutar `npm run watch` se puede ver el cambio en css
+
+## Soporte a SASS
+
+Instlamos la dependencia requerida:
+
+`sudo npm install --save-dev  style-loader css-loader sass-loader sass`
+
+Las carpetas quedan así:
+
+<p align="center"><img src="./readme/scss.png" width="250"></p>
+
+Editamos el archivo **webpack.config.js**
+```js
+const path = require('path'); //importamos path de node
+
+module.exports = {
+    // especificamos la entrada tambien se puede usar:
+    // ['./src/index.js', './src/index2.js']
+    entry: './src/js/index.js',
+    output: {
+        filename: 'bundle.js',
+        path:path.join(__dirname, '/dist')
+    },
+    module: {
+        rules: [
+            {
+                // Agregamos soporte a JS
+                test: /\.js$/, 
+                exclude: /node_modules/,
+                use:{ loader: 'babel-loader' }
+            },
+            {
+                // Agregamos soporte a CSS
+                test: /\.css$/,
+                use:[
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' }
+                ]
+            },
+            {
+                // Agregamos soporte a SASS
+                test: /\.scss$/,
+                use:[
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'sass-loader' }
+                ]
+            }
+        ]
+    }
+}
+```
+Agregamos y editamos **style.scss**
+
+```scss
+$color: #000;
+body{
+    background: $color;
+}
+```

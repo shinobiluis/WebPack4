@@ -1,3 +1,8 @@
+// Importamos css
+import '../css/style.css';
+// importamos sass
+import '../css/style.scss';
+
 class Cliente {
     constructor(nombre){
         this.nombre = nombre;
