@@ -129,3 +129,10 @@ Ahora solo tenemos que ejecutar en terminal:
 `npm run build`
 
 Esto nos genera un archivo dist/bundle.js
+
+
+## Transpilar el código con Babel
+
+Instalamos lo requerido para trabajar con babel
+
+`npm install --save-dev @babel/cli @babel/core @babel/preset-env @babel/register babel-loader`
