@@ -268,3 +268,11 @@ body{
     background: $color;
 }
 ```
+
+## Instalar WebPack Dev Server
+
+`npm install --save-dev webpack-dev-server`
+
+## Instalar html webpack plugin
+
+`npm install --save-dev html-webpack-plugin`
