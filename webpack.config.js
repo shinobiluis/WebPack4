@@ -3,9 +3,12 @@ const path = require('path'); //importamos path de node
 module.exports = {
     // especificamos la entrada tambien se puede usar:
     // ['./src/index.js', './src/index2.js']
-    entry: './src/js/index.js',
+    entry: {
+        index: './src/js/index.js',
+        nosotros: './src/js/nosotros.js'
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path:path.join(__dirname, '/dist')
     },
     module: {
