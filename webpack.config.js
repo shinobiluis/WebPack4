@@ -1,11 +1,12 @@
 const path = require('path'); //importamos path de node
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // especificamos la entrada tambien se puede usar:
     // ['./src/index.js', './src/index2.js']
     entry: {
         index: './src/js/index.js',
-        nosotros: './src/js/nosotros.js'
+        // nosotros: './src/js/nosotros.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -56,5 +57,15 @@ module.exports = {
                 }
             }
         }
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/index.html'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'nosotros.html',
+            template: 'src/nosotros.html'
+        })
+    ]
 }
